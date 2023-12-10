@@ -33,8 +33,8 @@ if (isset($_POST['gnaam']) && isset($_POST['wwoord'])) {
                     $rij = mysqli_fetch_assoc($result);
                 if ($rij['gebruikersnaam'] === $gnaam && $rij['wachtwoord'] === $wwoord) {
                     $_SESSION['gnaam'] = $rij['gebruikersnaam'];
-                    $_SESSION['wwoord'] = $rij['wwoord'];
-                    $_SESSION['id'] = $rij['id'];
+                    $_SESSION['wachtwoord'] = $rij['wachtwoord'];
+                    $_SESSION['ID'] = $rij['ID'];
                     header("Location: php_website/index.php");
                 }
                     }else{
@@ -42,6 +42,7 @@ if (isset($_POST['gnaam']) && isset($_POST['wwoord'])) {
                         exit();
                     }
         }
+	
     }else{
         echo "kaas";
     }

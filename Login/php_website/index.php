@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION['id']) && isset($_SESSION['gnaam'])) {
+if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
 
     ?>
 <!DOCTYPE html> 
@@ -24,9 +24,11 @@ if (isset($_SESSION['id']) && isset($_SESSION['gnaam'])) {
             <?php 
                 if(isset($_POST['aan'])) { 
                     echo "De lampen gaan aan"; 
+                    exec("sudo python3 ../../lamp_aan.py");
                 } 
                 if(isset($_POST['uit'])) { 
                     echo "De lampen gaan uit"; 
+                    exec("sudo python3 ../../lamp_uit.py");
                 } 
             ?> 
 
@@ -49,9 +51,6 @@ if (isset($_SESSION['id']) && isset($_SESSION['gnaam'])) {
                 if(isset($_POST['open'])) { 
                     // test voor python files runnen door php bestanden
                     // dit is nodig omdat ik via php niet de gpio pins kan gebruiken van de raspberry pi om data door te sturen naar de nodige onderdelen.
-                    
-                    exec('python ../../hello.py', $output);
-                    echo $output[0];
                     echo "De gordijnen gaan open"; 
                 } 
                 if(isset($_POST['dicht'])) { 
@@ -74,10 +73,10 @@ if (isset($_SESSION['id']) && isset($_SESSION['gnaam'])) {
 </html> 
 
 <?php
-
 }
+
 else{
-    header("Location: ../index.php");
-    exit();
+  header("Location: ../index.php?error=unknown");
+  exit();
 }
 ?>
