@@ -1,13 +1,14 @@
 <?php
 session_start();
 include "../db_conn.php";
+include 'kalender.php';
 
 if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
     $gnaam = $_SESSION['gnaam'];
 ?>
 <!DOCTYPE html> 
 <html> 
-      
+     
 <head> 
     <title> 
         Smart Home Website
@@ -25,6 +26,9 @@ if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
         </li>
         <li class="nav-item">
           <a class="nav-link" href="info.php">info</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="kalenderview.php">kalender / planning</a>
         </li>
       </ul>
     </div>
