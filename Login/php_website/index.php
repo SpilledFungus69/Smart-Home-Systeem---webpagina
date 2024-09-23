@@ -41,7 +41,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
                     </h1>
                     <?php 
                     // dit geld ook voor uit.
-                    //als je de lampen aan klikt dan: execute hij het python bestand, daarna stuurt hij de tijd en datum op naar de database.
+                    // als je de lampen aan klikt dan: execute hij het python bestand, daarna stuurt hij de tijd en datum op naar de database.
                         if(isset($_POST['aan'])) { 
                             echo "De lampen gaan aan"; 
                             exec("sudo python3 ../../lamp_aan.py");
@@ -95,6 +95,13 @@ if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
                         </form> 
 
             </div>
+            <form method="POST" action="kalenderview.php" class="form">
+              <label for="datum"></label>
+              <input type="text" name="wat gebeurt er"/>
+              <input type="date" id="datum" value="<?php echo date('Y-m-d');?>"/>
+              <input type="color"/>
+              <input type="submit" value="toevoegen">
+		        </form>
   
 </body> 
 </html> 

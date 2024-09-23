@@ -37,12 +37,10 @@ if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
 <?php
 include 'kalender.php';
 $calendar = new Calendar();
-$calendar->add_event('Birthday', '2024-05-03', 1, 'green');
-$calendar->add_event('Doctors', '2024-05-04', 1, 'red');
+$calendar->add_event('Birthday', '2024-05-28', 1, 'green');
+$calendar->add_event('Doctors', '2024-09-27', 4, 'red');
 $calendar->add_event('Holiday', '2024-05-16', 7);
 ?>
-<!DOCTYPE html>
-<html>
 	<head>
 		<meta charset="utf-8">
 		<title>Event Calendar</title>
@@ -50,9 +48,23 @@ $calendar->add_event('Holiday', '2024-05-16', 7);
 		<link href="calendar.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-		<label for="datum"></label>
-	<input type="date" id="datum"/>
+	<form method="POST" action="kalenderview.php" class="form">
+              <label for="datum"></label>
+              <input type="text" name="wat" placeholder="wat is de planning?"/>
+              <input type="date" name="datum" id="datum" value="<?php echo date('Y-m-d');?>"/>
+			  <input type="number" name="dagen"  placeholder="hoeveel dagen"/>
+              <select name="color" id="color">
+				<option value="red">rood</option>
+				<option value="green">groen</option>
+				<option value="blue">blauw</option>
+				<option value="yellow">geel</option>
+			  </select>
+              <input type="submit" value="toevoegen">
+	</form>
 	<?php
+	$datum = $_POST['datum'];
+	echo $datum;
+	$calendar->add_event($_POST['wat'], $_POST['datum'], $_POST['dagen'], $_POST['color'], )
 
 	?>
 		<div class="content home">
