@@ -95,13 +95,21 @@ if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
                         </form> 
 
             </div>
-            <form method="POST" action="kalenderview.php" class="form">
-              <label for="datum"></label>
-              <input type="text" name="wat gebeurt er"/>
-              <input type="date" id="datum" value="<?php echo date('Y-m-d');?>"/>
-              <input type="color"/>
-              <input type="submit" value="toevoegen">
-		        </form>
+              <!-- form voor het aangeven wanneer iets in de planning staat. -->
+              <form method="POST" action="kalenderview.php" class="form">
+                          <label for="datum"></label>
+                          <input type="text" name="wat" placeholder="wat is de planning?"/>
+                          <input type="date" name="datum" id="datum" value="<?php echo date('Y-m-d');?>"/>
+                          <input type="time" name="tijd" id="tijd"/>
+                          <input type="number" name="dagen"  placeholder="hoeveel dagen"/>
+                          <select name="color" id="color">
+                    <option value="red">rood</option>
+                    <option value="green">groen</option>
+                    <option value="blue">blauw</option>
+                    <option value="yellow">geel</option>
+                    </select>
+                          <input type="submit" value="toevoegen" name="submit">
+              </form>
   
 </body> 
 </html> 

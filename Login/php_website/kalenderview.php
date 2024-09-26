@@ -1,7 +1,6 @@
 <?php
 session_start();
 include "../db_conn.php";
-
 if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
     $gnaam = $_SESSION['gnaam'];
 ?>
@@ -36,10 +35,8 @@ if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
 
 <?php
 include 'kalender.php';
+include "../db_conn.php";
 $calendar = new Calendar();
-$calendar->add_event('Birthday', '2024-05-28', 1, 'green');
-$calendar->add_event('Doctors', '2024-09-27', 4, 'red');
-$calendar->add_event('Holiday', '2024-05-16', 7);
 ?>
 	<head>
 		<meta charset="utf-8">
@@ -48,24 +45,23 @@ $calendar->add_event('Holiday', '2024-05-16', 7);
 		<link href="calendar.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
-	<form method="POST" action="kalenderview.php" class="form">
-              <label for="datum"></label>
-              <input type="text" name="wat" placeholder="wat is de planning?"/>
-              <input type="date" name="datum" id="datum" value="<?php echo date('Y-m-d');?>"/>
-			  <input type="number" name="dagen"  placeholder="hoeveel dagen"/>
-              <select name="color" id="color">
-				<option value="red">rood</option>
-				<option value="green">groen</option>
-				<option value="blue">blauw</option>
-				<option value="yellow">geel</option>
-			  </select>
-              <input type="submit" value="toevoegen">
-	</form>
 	<?php
-	$datum = $_POST['datum'];
-	echo $datum;
-	$calendar->add_event($_POST['wat'], $_POST['datum'], $_POST['dagen'], $_POST['color'], )
+              if(isset($_POST['submit'])){
+                $wat   = $_POST['wat'];
+                $datum = $_POST['datum'];
+                $tijd  = $_POST['tijd'];
+                $dagen = $_POST['dagen'];
+                $kleur = $_POST['color'];
 
+                $sql = "INSERT INTO kalender (wat, wanneer, hoelang, tijd, kleur) VALUES ('$wat', '$datum' , '$dagen', '$tijd', '$kleur')";
+                $result = mysqli_query($conn, $sql);
+              }
+              $sql = "SELECT * FROM kalender";
+              $result = mysqli_query($conn, $sql);
+
+              while($row = $result->fetch_assoc()){
+                $calendar->add_event($row["wat"] , $row["wanneer"] , $row["hoelang"] , $row["kleur"]);
+            }
 	?>
 		<div class="content home">
 			<?=$calendar?>
