@@ -46,6 +46,7 @@ $calendar = new Calendar();
 	</head>
 	<body>
 	<?php
+
               if(isset($_POST['submit'])){
                 $wat   = $_POST['wat'];
                 $datum = $_POST['datum'];
@@ -61,6 +62,17 @@ $calendar = new Calendar();
 
               while($row = $result->fetch_assoc()){
                 $calendar->add_event($row["wat"] , $row["wanneer"] , $row["hoelang"] , $row["kleur"]);
+            }
+
+            date_default_timezone_set('Europe/Amsterdam'); //eg
+            $localtime = date('Y-m-d H:i:s');
+            echo $localtime;
+
+            while($row = $result->fetch_assoc()){
+              if (date('Y-m-d') == $row["wanneer"] && date('H:i') == $row["tijd"]){
+                echo "kaas";
+                header();
+              }
             }
 	?>
 		<div class="content home">

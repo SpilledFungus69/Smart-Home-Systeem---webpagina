@@ -110,7 +110,7 @@ if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
                     </select>
                           <input type="submit" value="toevoegen" name="submit">
               </form>
-  
+
 </body> 
 </html> 
 
