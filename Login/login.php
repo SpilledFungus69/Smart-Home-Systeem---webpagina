@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "db_conn.php";
-
+// dit bestand kijkt of je wel kan inloggen met de gebruikersnaam en wachtwoord die in de database staat
 if (isset($_POST['gnaam']) && isset($_POST['wwoord'])) {
 
         function validate($data){
@@ -17,7 +17,7 @@ if (isset($_POST['gnaam']) && isset($_POST['wwoord'])) {
     $wwoord = validate($_POST['wwoord']);
 
 
-
+    // simpele error handeling in de url en kijken of de gebruikersdata in de database staat
     if (empty($gnaam)) {
         header("Location: index.php?error= gebruikersnaam moet ingevuld worden");
         exit();

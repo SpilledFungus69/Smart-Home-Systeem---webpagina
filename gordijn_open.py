@@ -8,11 +8,11 @@ import os
 def setupGPIO():
 	GPIO.setmode(GPIO.BCM)
 	GPIO.setwarnings(False)
-	GPIO.setup(18, GPIO.OUT)
+	GPIO.setup(19, GPIO.OUT)
 	
 def controlLED():
 	try:
-		GPIO.output(18, GPIO.HIGH)
+		GPIO.output(19, GPIO.HIGH)
 	except KeyboardInterrupt:
 		GPIO.cleanup()
 		print("")
