@@ -50,13 +50,22 @@ if (isset($_SESSION['ID']) && isset($_SESSION['gnaam'])) {
                         </h1>
 
                     <?php 
+                    // Hier worden de gordijnen open en dicht gedaan.
+                    //verder werkt het hetzelfde als de lampen functie
                         if(isset($_POST['open'])) { 
-                            // hier moeten ook nog python bestanden, maar ik heb de hardware niet daarvoor, dus nog overbodig om te coderen 
-                            //(bijna hetzelfde als met de lampen python bestanden)
+                          echo "De gordijnen gaan open"; 
+                          exec("sudo python3 ../../gordijn_open.py");
+                          $datum = date('Y-m-d H:i:s');
+                          $sql = "INSERT INTO logboek (wie, wat, wanneer) VALUES (' $gnaam ', 'gordijnen open gedaan','$datum')";
+                          $result = mysqli_query($conn, $sql);
                             echo "De gordijnen gaan open"; 
                         } 
                         if(isset($_POST['dicht'])) { 
-                            echo "De gordijnen gaan dicht"; 
+                            echo "De gordijnen gaan dicht";
+                            exec("sudo python3 ../../gordijn_dicht.py");
+                            $datum = date('Y-m-d H:i:s');
+                            $sql = "INSERT INTO logboek (wie, wat, wanneer) VALUES (' $gnaam ', 'gordijnen dichtgedaan','$datum')";
+                            $result = mysqli_query($conn, $sql);
                         } 
                     ?> 
                     </h1>

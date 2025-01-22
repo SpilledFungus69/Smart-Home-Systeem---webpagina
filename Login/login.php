@@ -35,6 +35,7 @@ if (isset($_POST['gnaam']) && isset($_POST['wwoord'])) {
                     $_SESSION['gnaam'] = $rij['gebruikersnaam'];
                     $_SESSION['wachtwoord'] = $rij['wachtwoord'];
                     $_SESSION['ID'] = $rij['ID'];
+                    $_SESSION['is_admin'] = $rij['is_admin'];
                     header("Location: php_website/index.php");
                 }
                     }else{
@@ -44,5 +45,5 @@ if (isset($_POST['gnaam']) && isset($_POST['wwoord'])) {
         }
 	
     }else{
-        echo "kaas";
+        echo "onbekende error.";
     }
